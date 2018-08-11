@@ -7,8 +7,8 @@ export default HomeScreen = (props) => {
     return (
         <View style={styles.container}>
             <Text style={styles.titleText}>Home Screen</Text>
-            <TouchableOpacity onPress={() => { navigation.navigate('Tabs') }}>
-                <Text style={styles.btnText}>Tabs Screen ></Text>
+            <TouchableOpacity onPress={() => { navigation.navigate('Stack') }}>
+                <Text style={styles.btnText}>Stack Screen ></Text>
             </TouchableOpacity>
         </View>
     );
@@ -17,9 +17,9 @@ export default HomeScreen = (props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'red',
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: 'red',
     },
     titleText: {
         fontSize: 50,

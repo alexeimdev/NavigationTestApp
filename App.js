@@ -9,6 +9,7 @@ import {
 import HomeScreen from './screens/HomeScreen';
 import AScreen from './screens/AScreen';
 import BScreen from './screens/BScreen';
+import Header from './components/Header';
 
 export default class App extends React.Component {
     render() {
@@ -19,38 +20,43 @@ export default class App extends React.Component {
 }
 
 const RootNavigator = createStackNavigator({
-    Main: {
-        screen: createDrawerNavigator({
-            Home: {
-                screen: HomeScreen
-            },
-            Tabs: createTabNavigator({
-                AScreen: { 
-                    screen: AScreen,
-                    title: 'AScreen' 
-                },
-                BScreen: { 
-                    screen: BScreen,
-                    title: 'BScreen' 
+    Main: createDrawerNavigator({
+        Home: {
+            screen: HomeScreen,
+        },
+        Stack: createStackNavigator({
+            AScreen: {
+                screen: AScreen,
+                title: 'AScreen',
+                navigationOptions: {
+                    headerMode: 'none'
                 }
-            },{
-                initialRouteName: 'AScreen'
-            })
-        })
-    }
-}, {
-        navigationOptions: ({ navigation }) => ({
-            headerLeft:
-                <TouchableOpacity title="Menu" onPress={() => { navigation.toggleDrawer(); }}>
-                    <Text style={styles.btnMenuText}>Menu</Text>
-                </TouchableOpacity>,
-        })
+            },
+            BScreen: {
+                screen: BScreen,
+                title: 'BScreen'
+            }
+        },
+        {
+            navigationOptions: {
+                headerTintColor: 'black',
+                headerTitle: 'title'
+            }
+        }),
     })
+},
+{
+    headerMode: 'none'
+});
 
 const styles = StyleSheet.create({
     btnMenuText: {
         fontSize: 20,
         paddingLeft: 20
+    },
+    btnPopText: {
+        fontSize: 20,
+        paddingRight: 20
     }
 })
 

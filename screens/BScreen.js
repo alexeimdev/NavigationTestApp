@@ -7,9 +7,9 @@ export default B = (props) => {
     return (
         <View style={styles.container}>
             <Text style={styles.titleText}>B Screen</Text>
-            <TouchableOpacity onPress={() => { navigation.navigate('Home') }}>
+            {/* <TouchableOpacity onPress={() => { navigation.navigate('Home') }}>
                 <Text style={styles.btnText}>Home Screen ></Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
         </View>
     );
 }
