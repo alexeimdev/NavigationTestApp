@@ -9,7 +9,7 @@ import {
 import HomeScreen from './screens/HomeScreen';
 import AScreen from './screens/AScreen';
 import BScreen from './screens/BScreen';
-import Header from './components/Header';
+//import Header from './components/Header';
 
 export default class App extends React.Component {
     render() {
@@ -19,34 +19,20 @@ export default class App extends React.Component {
     }
 }
 
-const RootNavigator = createStackNavigator({
-    Main: createDrawerNavigator({
-        Home: {
-            screen: HomeScreen,
+const RootNavigator = createDrawerNavigator({
+    Home: {
+        screen: HomeScreen,
+    },
+    Stack: createStackNavigator({
+        AScreen: {
+            screen: AScreen,
+            title: 'AScreen',
         },
-        Stack: createStackNavigator({
-            AScreen: {
-                screen: AScreen,
-                title: 'AScreen',
-                navigationOptions: {
-                    headerMode: 'none'
-                }
-            },
-            BScreen: {
-                screen: BScreen,
-                title: 'BScreen'
-            }
-        },
-        {
-            navigationOptions: {
-                headerTintColor: 'black',
-                headerTitle: 'title'
-            }
-        }),
+        BScreen: {
+            screen: BScreen,
+            title: 'BScreen',
+        }
     })
-},
-{
-    headerMode: 'none'
 });
 
 const styles = StyleSheet.create({
