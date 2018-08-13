@@ -1,7 +1,8 @@
 import React from 'react';
 import { Header } from 'react-native-elements';
 
-export default CustomHeader = ({navigation}) => {
+export default CustomHeader = ({ navigation }) => {
+    //const drawNavigator = navigation.getChildNavigation()
     return (
         <Header
             outerContainerStyles={{
@@ -19,7 +20,8 @@ export default CustomHeader = ({navigation}) => {
                 icon: 'menu',
                 color: '#000',
                 size: 35,
-                onPress: () => { navigation.toggleDrawer() }
-            }} />
+                onPress: () => { navigation.dispatch('DrawerOpen') }
+            }}
+        />
     )
 }

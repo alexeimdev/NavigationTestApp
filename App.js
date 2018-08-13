@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
+import { StyleSheet, Button, View, Text } from 'react-native';
 import {
     createStackNavigator,
     createDrawerNavigator,
@@ -10,34 +10,47 @@ import HomeScreen from './screens/HomeScreen';
 import AScreen from './screens/AScreen';
 import BScreen from './screens/BScreen';
 
-import CustomHeader from './components/CustomHeader';
+// import CustomHeader from './components/CustomHeader';
 
 export default class App extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <CustomHeader/>
                 <RootNavigator />
             </View>
         );
     }
 }
 
-const RootNavigator = createDrawerNavigator({
-    Home: {
-        screen: HomeScreen,
-    },
-    Stack: createStackNavigator({
+const RootNavigator = createStackNavigator({
+    Menu: createDrawerNavigator({
+        Home: {
+            screen: HomeScreen,
+        },
         AScreen: {
-            screen: AScreen,
-            title: 'AScreen',
+            screen: AScreen
         },
         BScreen: {
-            screen: BScreen,
-            title: 'BScreen',
-        }
-    })
-});
+            screen: BScreen
+        },
+    }, {
+            initialRouteName: 'BScreen',
+            //drawerOpenRoute: 'DrawerOpen',
+            //drawerCloseRoute: 'DrawerClose',
+            //drawerToggleRoute: 'DrawerToggle',
+        }),
+}, {
+        navigationOptions: ({ navigation }) => ({
+            headerLeft: (
+                <Button
+                    title="Menu"
+                    onPress={() => {
+                        navigation.toggleDrawer()
+                    }}>
+                </Button>
+            ),
+        })
+    });
 
 const styles = StyleSheet.create({
     container: {

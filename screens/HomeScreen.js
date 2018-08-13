@@ -2,13 +2,13 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 export default HomeScreen = (props) => {
-
+    const { navigation } = props;
     return (
         <View style={styles.container}>
             <View style={styles.body}>
                 <Text style={styles.titleText}>Home Screen</Text>
-                <TouchableOpacity onPress={() => { navigation.navigate('Stack') }}>
-                    <Text style={styles.btnText}>Stack Screen ></Text>
+                <TouchableOpacity onPress={() => { navigation.navigate('AScreen') }}>
+                    <Text style={styles.btnText}>A Screen ></Text>
                 </TouchableOpacity>
             </View>
         </View>
