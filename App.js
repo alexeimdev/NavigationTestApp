@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View, Button, Text } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons'
 import {
     createStackNavigator,
     createDrawerNavigator,
@@ -23,46 +22,19 @@ export default class App extends React.Component {
     }
 }
 
-const RootNavigator = createStackNavigator({
-    Menu: createDrawerNavigator({
+const RootNavigator = createDrawerNavigator({
+    Stack: createStackNavigator({
         Home: {
             screen: HomeScreen,
         },
-        Stack: createStackNavigator({
-            AScreen: {
-                screen: AScreen
-            },
-            BScreen: {
-                screen: BScreen
-            },
-        }, {
-            headerMode: 'none'
-        })
-    }, {
-            initialRouteName: 'Home',
-            //drawerOpenRoute: 'DrawerOpen',
-            //drawerCloseRoute: 'DrawerClose',
-            //drawerToggleRoute: 'DrawerToggle',
-        }),
-}, {
-        navigationOptions: ({ navigation }) => ({
-            headerLeft: (
-                // <Button
-                //     title="Menu"
-                //     onPress={() => {
-                //         navigation.toggleDrawer()
-                //     }}>
-                // </Button>
-                <TouchableOpacity
-                    style={{ paddingLeft: 20 }}
-                    onPress={() => {
-                        navigation.toggleDrawer()
-                    }}>
-                    <Icon size={30} name='dehaze' />
-                </TouchableOpacity>
-            )
-        })
-    });
+        AScreen: {
+            screen: AScreen
+        },
+        BScreen: {
+            screen: BScreen
+        },
+    })
+});
 
 const styles = StyleSheet.create({
     container: {

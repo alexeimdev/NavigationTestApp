@@ -1,18 +1,36 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
-export default HomeScreen = (props) => {
-    const { navigation } = props;
-    return (
-        <View style={styles.container}>
-            <View style={styles.body}>
-                <Text style={styles.titleText}>Home Screen</Text>
-                <TouchableOpacity onPress={() => { navigation.navigate('AScreen') }}>
-                    <Text style={styles.btnText}>A Screen ></Text>
-                </TouchableOpacity>
+export default class HomeScreen extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    static navigationOptions = ({ navigation }) => ({
+        headerLeft: (
+            <TouchableOpacity
+                style={{ paddingLeft: 15 }}
+                onPress={() => {
+                    navigation.toggleDrawer()
+                }}>
+                <Icon size={30} name='dehaze' />
+            </TouchableOpacity>
+        )
+    })
+    render() {
+        return (
+            <View style={styles.container}>
+                <View style={styles.body}>
+                    <Text style={styles.titleText}>Home Screen</Text>
+                    <TouchableOpacity onPress={() => { this.props.navigation.navigate('AScreen') }}>
+                        <Text style={styles.btnText}>A Screen ></Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-        </View>
-    );
+        );
+    }
+
 }
 
 const styles = StyleSheet.create({
