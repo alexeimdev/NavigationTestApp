@@ -14,7 +14,7 @@ export default class HomeScreen extends React.Component {
                 onPress={() => {
                     navigation.toggleDrawer()
                 }}>
-                <Icon size={30} name='dehaze' />
+                <Icon size={25} name='dehaze' />
             </TouchableOpacity>
         )
     })
