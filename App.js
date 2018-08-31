@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View, Button, Text } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Button, Text, I18nManager } from 'react-native';
 import {
     createStackNavigator,
     createDrawerNavigator,
@@ -13,6 +13,12 @@ import BScreen from './screens/BScreen';
 // import CustomHeader from './components/CustomHeader';
 
 export default class App extends React.Component {
+    constructor(props) {
+        super(props);
+        I18nManager.forceRTL = true;
+    }
+
+
     render() {
         return (
             <View style={styles.container}>
@@ -33,7 +39,12 @@ const RootNavigator = createDrawerNavigator({
         BScreen: {
             screen: BScreen
         },
+    },{
+        navigationOptions: {
+        }
     })
+},{
+    drawerPosition: 'right'
 });
 
 const styles = StyleSheet.create({

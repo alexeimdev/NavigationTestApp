@@ -8,9 +8,9 @@ export default class HomeScreen extends React.Component {
     }
 
     static navigationOptions = ({ navigation }) => ({
-        headerLeft: (
+        headerRight: (
             <TouchableOpacity
-                style={{ paddingLeft: 15 }}
+                style={{ paddingRight: 15 }}
                 onPress={() => {
                     navigation.toggleDrawer()
                 }}>
