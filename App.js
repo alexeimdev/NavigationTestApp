@@ -4,7 +4,11 @@ import {
     createStackNavigator,
     createDrawerNavigator,
     createTabNavigator,
+    createBottomTabNavigator,
+    createMaterialTopTabNavigator
 } from 'react-navigation';
+import Icon from 'react-native-vector-icons/Feather';
+
 
 import HomeScreen from './screens/HomeScreen';
 import AScreen from './screens/AScreen';
@@ -28,24 +32,56 @@ export default class App extends React.Component {
     }
 }
 
+
+//Tabs.navigationOptions = ({ navigation }) => {
+// let tabBarVisible = true;
+// if (navigation.state.index > 0) {
+//     tabBarVisible = false;
+// }
+
+// return {
+//     tabBarVisible,
+// };
+//};
+
 const RootNavigator = createDrawerNavigator({
-    Stack: createStackNavigator({
+    Tabs: createBottomTabNavigator({
         Home: {
             screen: HomeScreen,
+            navigationOptions: {
+                tabBarIcon: ({ tintColor, focused }) => (
+                    focused
+                        ? <Icon name="bluetooth" size={25} color='#fff' />
+                        : <Icon name="bluetooth" size={25} color='#000' />
+                )
+            }
         },
-        AScreen: {
-            screen: AScreen
-        },
-        BScreen: {
-            screen: BScreen
-        },
-    },{
-        navigationOptions: {
+        Stack: {
+            screen: createStackNavigator({
+                AScreen: {
+                    screen: AScreen,
+                    navigationOptions: {
+                        header: null
+                    }
+                },
+                BScreen
+            }),
+            navigationOptions: {
+                tabBarIcon: ({ tintColor, focused }) => (
+                    focused
+                        ? <Icon name="camera-off" size={25} color='#fff' />
+                        : <Icon name="camera-off" size={25} color='#000' />
+                )            }
         }
-    })
-},{
-    drawerPosition: 'right'
-});
+    }, {
+            tabBarOptions: {
+                activeBackgroundColor: '#0c0c0c',
+                activeTintColor: '#ffffff',
+            }
+        })
+}, {
+        drawerPosition: 'right'
+    });
 
 const styles = StyleSheet.create({
     container: {
