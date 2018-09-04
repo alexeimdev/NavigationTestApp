@@ -8,15 +8,7 @@ export default class HomeScreen extends React.Component {
     }
 
     static navigationOptions = ({ navigation }) => ({
-        headerRight: (
-            <TouchableOpacity
-                style={{ paddingRight: 15 }}
-                onPress={() => {
-                    navigation.toggleDrawer()
-                }}>
-                <Icon size={25} name='dehaze' />
-            </TouchableOpacity>
-        )
+        headerMode: 'none'           
     })
     render() {
         return (

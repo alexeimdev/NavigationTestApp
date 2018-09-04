@@ -45,43 +45,58 @@ export default class App extends React.Component {
 //};
 
 const RootNavigator = createDrawerNavigator({
-    Tabs: createBottomTabNavigator({
-        Home: {
-            screen: HomeScreen,
-            navigationOptions: {
-                tabBarIcon: ({ tintColor, focused }) => (
-                    focused
-                        ? <Icon name="bluetooth" size={25} color='#fff' />
-                        : <Icon name="bluetooth" size={25} color='#000' />
-                )
+    MainStack: StackNavigator = createStackNavigator({
+        Tabs: createBottomTabNavigator({
+            Home: {
+                screen: HomeScreen,
+                navigationOptions: {
+                    tabBarIcon: ({ tintColor, focused }) => (
+                        <Icon name="bluetooth" size={25} color='#000' />
+                    )
+                }
+            },
+            Home2: {
+                screen: AScreen,
+                navigationOptions: {
+                    tabBarIcon: ({ tintColor, focused }) => (
+                        <Icon name="wifi" size={25} color='#000' />
+                    )
+                }
+            },
+            Home3: {
+                screen: AScreen,
+                navigationOptions: {
+                    tabBarIcon: ({ tintColor, focused }) => (
+                        <Icon name="calendar" size={25} color='#000' />
+                    )
+                }
             }
         },
-        Stack: {
-            screen: createStackNavigator({
-                AScreen: {
-                    screen: AScreen,
-                    navigationOptions: {
-                        header: null
-                    }
-                },
-                BScreen
-            }),
-            navigationOptions: {
-                tabBarIcon: ({ tintColor, focused }) => (
-                    focused
-                        ? <Icon name="camera-off" size={25} color='#fff' />
-                        : <Icon name="camera-off" size={25} color='#000' />
-                )            }
-        }
-    }, {
-            tabBarOptions: {
-                activeBackgroundColor: '#0c0c0c',
-                activeTintColor: '#ffffff',
+            {
+                // tabBarPosition: 'bottom',
+                // animationEnabled: false,
+                // swipeEnabled: false,
             }
+
+        ),
+        AScreen,
+        BScreen
+    }, {
+            navigationOptions: ({ navigation }) => ({
+                headerRight: (
+                    <TouchableOpacity
+                        style={{ paddingRight: 15 }}
+                        onPress={() => {
+                            navigation.toggleDrawer()
+                        }}>
+                        <Icon size={25} name='menu' />
+                    </TouchableOpacity>
+                )
+            })
         })
-}, {
-        drawerPosition: 'right'
-    });
+})
+
+
 
 const styles = StyleSheet.create({
     container: {
