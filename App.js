@@ -47,7 +47,7 @@ export default class App extends React.Component {
 const RootNavigator = createDrawerNavigator({
     MainStack: StackNavigator = createStackNavigator({
         Tabs: createBottomTabNavigator({
-            Home: {
+            Home1: {
                 screen: HomeScreen,
                 navigationOptions: {
                     tabBarIcon: ({ tintColor, focused }) => (
@@ -56,7 +56,7 @@ const RootNavigator = createDrawerNavigator({
                 }
             },
             Home2: {
-                screen: AScreen,
+                screen: HomeScreen,
                 navigationOptions: {
                     tabBarIcon: ({ tintColor, focused }) => (
                         <Icon name="wifi" size={25} color='#000' />
@@ -64,7 +64,7 @@ const RootNavigator = createDrawerNavigator({
                 }
             },
             Home3: {
-                screen: AScreen,
+                screen: HomeScreen,
                 navigationOptions: {
                     tabBarIcon: ({ tintColor, focused }) => (
                         <Icon name="calendar" size={25} color='#000' />
@@ -82,18 +82,28 @@ const RootNavigator = createDrawerNavigator({
         AScreen,
         BScreen
     }, {
-            navigationOptions: ({ navigation }) => ({
-                headerRight: (
-                    <TouchableOpacity
-                        style={{ paddingRight: 15 }}
-                        onPress={() => {
-                            navigation.toggleDrawer()
-                        }}>
-                        <Icon size={25} name='menu' />
-                    </TouchableOpacity>
-                )
-            })
+            navigationOptions: ({ navigation }) => {
+                let headerRight = null;
+
+                if (navigation.state.index == 0) {
+                    headerRight = (
+                        <TouchableOpacity
+                            style={{ paddingRight: 15 }}
+                            onPress={() => {
+                                navigation.toggleDrawer()
+                            }}>
+                            <Icon size={25} name='menu' />
+                        </TouchableOpacity>
+                    )
+                }
+
+                return {
+                    headerRight
+                };
+            }
         })
+},{
+    drawerPosition: 'right'
 })
 
 
