@@ -51,7 +51,7 @@ const RootNavigator = createDrawerNavigator({
                 screen: HomeScreen,
                 navigationOptions: {
                     tabBarIcon: ({ tintColor, focused }) => (
-                        <Icon name="bluetooth" size={25} color='#000' />
+                        <Icon name="calendar" size={25} color='#000' />
                     )
                 }
             },
@@ -59,7 +59,7 @@ const RootNavigator = createDrawerNavigator({
                 screen: HomeScreen,
                 navigationOptions: {
                     tabBarIcon: ({ tintColor, focused }) => (
-                        <Icon name="wifi" size={25} color='#000' />
+                        <Icon name="calendar" size={25} color='#000' />
                     )
                 }
             },
@@ -73,9 +73,9 @@ const RootNavigator = createDrawerNavigator({
             }
         },
             {
-                // tabBarPosition: 'bottom',
-                // animationEnabled: false,
-                // swipeEnabled: false,
+                tabBarPosition: 'top',
+                //animationEnabled: false,
+                //swipeEnabled: false,
             }
 
         ),
@@ -84,27 +84,37 @@ const RootNavigator = createDrawerNavigator({
     }, {
             navigationOptions: ({ navigation }) => {
                 let headerRight = null;
+                let headerLeft = null;
+                if (navigation.state.routeName == 'Tabs') {
 
-                if (navigation.state.index == 0) {
-                    headerRight = (
-                        <TouchableOpacity
-                            style={{ paddingRight: 15 }}
-                            onPress={() => {
-                                navigation.toggleDrawer()
-                            }}>
-                            <Icon size={25} name='menu' />
-                        </TouchableOpacity>
-                    )
+                    return {
+                        headerRight: (
+                            <TouchableOpacity
+                                style={{ paddingRight: 15 }}
+                                onPress={() => {
+                                    navigation.toggleDrawer()
+                                }}>
+                                <Icon size={25} name='menu' />
+                                {/* <Text>{navigation.state.routeName }</Text> */}
+                            </TouchableOpacity>
+                        ),
+                        headerLeft: (
+                            <TouchableOpacity
+                                style={{ paddingLeft: 15 }}
+                                onPress={() => {
+                                    //navigation.toggleDrawer()
+                                }}>
+                                <Icon size={25} name='cast' />
+                                {/* <Text>{navigation.state.routeName }</Text> */}
+                            </TouchableOpacity>
+                        )
+                    }
                 }
-
-                return {
-                    headerRight
-                };
             }
         })
-},{
-    drawerPosition: 'right'
-})
+}, {
+        drawerPosition: 'right'
+    })
 
 
 

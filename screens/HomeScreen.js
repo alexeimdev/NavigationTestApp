@@ -7,17 +7,18 @@ export default class HomeScreen extends React.Component {
         super(props);
     }
 
-    // static navigationOptions = ({ navigation }) => ({
-    //     headerRight: (
-    //         <TouchableOpacity
-    //             style={{ paddingRight: 15 }}
-    //             onPress={() => {
-    //                 navigation.toggleDrawer()
-    //             }}>
-    //             <Icon size={25} name='dehaze' />
-    //         </TouchableOpacity>
-    //     )
-    // })
+    static navigationOptions = ({ navigation }) => ({
+        headerRight: (
+            <TouchableOpacity
+                style={{ paddingRight: 15 }}
+                onPress={() => {
+                    navigation.toggleDrawer()
+                }}>
+                <Icon size={25} name='dehaze' />
+            </TouchableOpacity>
+        )
+    })
+    
     render() {
         return (
             <View style={styles.container}>
