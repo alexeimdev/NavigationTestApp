@@ -18,7 +18,7 @@ export default class HomeScreen extends React.Component {
             </TouchableOpacity>
         )
     })
-    
+
     render() {
         return (
             <View style={styles.container}>
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         flex: 1,
         //alignItems: 'center',
         //justifyContent: 'center',
-        backgroundColor: 'red',
+        backgroundColor: 'white',
         //marginTop: 50,
     },
     header: {

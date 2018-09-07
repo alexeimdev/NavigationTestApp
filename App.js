@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View, Button, Text, I18nManager } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Button, Text, I18nManager, Platform } from 'react-native';
 import {
     createStackNavigator,
     createDrawerNavigator,
@@ -20,6 +20,7 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         I18nManager.forceRTL = true;
+        const isIos = Platform.OS === 'ios';
     }
 
 
@@ -32,48 +33,49 @@ export default class App extends React.Component {
     }
 }
 
-
-//Tabs.navigationOptions = ({ navigation }) => {
-// let tabBarVisible = true;
-// if (navigation.state.index > 0) {
-//     tabBarVisible = false;
-// }
-
-// return {
-//     tabBarVisible,
-// };
-//};
-
 const RootNavigator = createDrawerNavigator({
     MainStack: StackNavigator = createStackNavigator({
         Tabs: createBottomTabNavigator({
-            Home1: {
+            Tab1: {
                 screen: HomeScreen,
                 navigationOptions: {
                     tabBarIcon: ({ tintColor, focused }) => (
-                        <Icon name="calendar" size={25} color='#000' />
-                    )
+                        <Icon name="calendar" size={30} color={focused ? '#d10074' : '#000'} />
+                    ),
+                    tabBarLabel: 'אושרו היום'
                 }
             },
-            Home2: {
+            Tab2: {
                 screen: HomeScreen,
                 navigationOptions: {
                     tabBarIcon: ({ tintColor, focused }) => (
-                        <Icon name="calendar" size={25} color='#000' />
-                    )
+                        <Icon name="calendar" size={30} color={focused ? '#d10074' : '#000'} />
+                    ),
+                    tabBarLabel: 'הבקשות שלי'
                 }
             },
-            Home3: {
+            Tab3: {
                 screen: HomeScreen,
                 navigationOptions: {
                     tabBarIcon: ({ tintColor, focused }) => (
-                        <Icon name="calendar" size={25} color='#000' />
-                    )
+                        <Icon name="calendar" size={30} color={focused ? '#d10074' : '#000'} />
+                    ),
+                    tabBarLabel: 'לטיפול'
                 }
             }
         },
             {
-                tabBarPosition: 'top',
+                tabBarOptions: {
+                    activeTintColor: '#d10074',
+                    inactiveTintColor: '#000',
+                    //activeBackgroundColor: '#6e2b6b',
+                    //inactiveBackgroundColor: '#e2e2e2'
+                    labelStyle: {
+                        fontSize: 12
+                    }
+
+                }
+                //tabBarPosition: 'top',
                 //animationEnabled: false,
                 //swipeEnabled: false,
             }
@@ -83,10 +85,7 @@ const RootNavigator = createDrawerNavigator({
         BScreen
     }, {
             navigationOptions: ({ navigation }) => {
-                let headerRight = null;
-                let headerLeft = null;
                 if (navigation.state.routeName == 'Tabs') {
-
                     return {
                         headerRight: (
                             <TouchableOpacity
@@ -94,7 +93,7 @@ const RootNavigator = createDrawerNavigator({
                                 onPress={() => {
                                     navigation.toggleDrawer()
                                 }}>
-                                <Icon size={25} name='menu' />
+                                <Icon size={25} name='menu' color='#701c68' />
                                 {/* <Text>{navigation.state.routeName }</Text> */}
                             </TouchableOpacity>
                         ),
@@ -104,12 +103,19 @@ const RootNavigator = createDrawerNavigator({
                                 onPress={() => {
                                     //navigation.toggleDrawer()
                                 }}>
-                                <Icon size={25} name='cast' />
+                                <Icon size={25} name='cast' color="#701c68" />
                                 {/* <Text>{navigation.state.routeName }</Text> */}
                             </TouchableOpacity>
                         )
                     }
                 }
+
+                return {
+                    headerBackImage: (
+                        <Icon size={25} name='arrow-left' color="#701c68" style={{ paddingLeft: 15 }} />
+                    )
+                }
+
             }
         })
 }, {
