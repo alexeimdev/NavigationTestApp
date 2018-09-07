@@ -89,7 +89,7 @@ const RootNavigator = createDrawerNavigator({
                     return {
                         headerRight: (
                             <TouchableOpacity
-                                style={{ paddingRight: 15 }}
+                                style={{ padding: 10 }}
                                 onPress={() => {
                                     navigation.toggleDrawer()
                                 }}>
@@ -99,9 +99,9 @@ const RootNavigator = createDrawerNavigator({
                         ),
                         headerLeft: (
                             <TouchableOpacity
-                                style={{ paddingLeft: 15 }}
+                                style={{ padding: 10 }}
                                 onPress={() => {
-                                    //navigation.toggleDrawer()
+                                    navigation.toggleDrawer()
                                 }}>
                                 <Icon size={25} name='cast' color="#701c68" />
                                 {/* <Text>{navigation.state.routeName }</Text> */}
@@ -112,7 +112,7 @@ const RootNavigator = createDrawerNavigator({
 
                 return {
                     headerBackImage: (
-                        <Icon size={25} name='arrow-left' color="#701c68" style={{ paddingLeft: 15 }} />
+                        <Icon size={25} name='arrow-left' color="#701c68" style={{ padding: 10 }} />
                     )
                 }
 

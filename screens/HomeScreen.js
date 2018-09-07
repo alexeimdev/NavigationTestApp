@@ -10,7 +10,7 @@ export default class HomeScreen extends React.Component {
     static navigationOptions = ({ navigation }) => ({
         headerRight: (
             <TouchableOpacity
-                style={{ paddingRight: 15 }}
+                style={{ padding: 10 }}
                 onPress={() => {
                     navigation.toggleDrawer()
                 }}>
@@ -68,7 +68,6 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontSize: 50,
-        color: 'white',
     },
     btnText: {
         fontSize: 30,
