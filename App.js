@@ -7,22 +7,17 @@ import {
     createBottomTabNavigator,
     createMaterialTopTabNavigator
 } from 'react-navigation';
-import Icon from 'react-native-vector-icons/Feather';
-
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import HomeScreen from './screens/HomeScreen';
 import AScreen from './screens/AScreen';
 import BScreen from './screens/BScreen';
 
-// import CustomHeader from './components/CustomHeader';
-
 export default class App extends React.Component {
     constructor(props) {
         super(props);
         I18nManager.forceRTL = true;
-        const isIos = Platform.OS === 'ios';
     }
-
 
     render() {
         return (
@@ -40,7 +35,7 @@ const RootNavigator = createDrawerNavigator({
                 screen: HomeScreen,
                 navigationOptions: {
                     tabBarIcon: ({ tintColor, focused }) => (
-                        <Icon name="calendar" size={30} color={focused ? '#d10074' : '#000'} />
+                        <Icon name="calendar-check" size={25} color={focused ? '#d10074' : 'grey'} />
                     ),
                     tabBarLabel: 'אושרו היום'
                 }
@@ -49,7 +44,7 @@ const RootNavigator = createDrawerNavigator({
                 screen: HomeScreen,
                 navigationOptions: {
                     tabBarIcon: ({ tintColor, focused }) => (
-                        <Icon name="calendar" size={30} color={focused ? '#d10074' : '#000'} />
+                        <Icon name="account-edit" size={27} color={focused ? '#d10074' : 'grey'} />
                     ),
                     tabBarLabel: 'הבקשות שלי'
                 }
@@ -58,7 +53,7 @@ const RootNavigator = createDrawerNavigator({
                 screen: HomeScreen,
                 navigationOptions: {
                     tabBarIcon: ({ tintColor, focused }) => (
-                        <Icon name="calendar" size={30} color={focused ? '#d10074' : '#000'} />
+                        <Icon name="format-list-checks" size={27} color={focused ? '#d10074' : 'grey'} />
                     ),
                     tabBarLabel: 'לטיפול'
                 }
@@ -67,11 +62,14 @@ const RootNavigator = createDrawerNavigator({
             {
                 tabBarOptions: {
                     activeTintColor: '#d10074',
-                    inactiveTintColor: '#000',
+                    //inactiveTintColor: '#000',
                     //activeBackgroundColor: '#6e2b6b',
                     //inactiveBackgroundColor: '#e2e2e2'
                     labelStyle: {
                         fontSize: 12
+                    },
+                    style: {
+                        //height: 60,
                     }
 
                 }
@@ -88,31 +86,31 @@ const RootNavigator = createDrawerNavigator({
                 if (navigation.state.routeName == 'Tabs') {
                     return {
                         headerRight: (
-                            <TouchableOpacity
-                                style={{ padding: 10 }}
-                                onPress={() => {
-                                    navigation.toggleDrawer()
-                                }}>
-                                <Icon size={25} name='menu' color='#701c68' />
-                                {/* <Text>{navigation.state.routeName }</Text> */}
-                            </TouchableOpacity>
+                            <View style={styles.headerButtonWrapper}>
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        navigation.toggleDrawer()
+                                    }}>
+                                    <Icon size={25} name='menu' color='#701c68' />
+                                </TouchableOpacity>
+                            </View>
                         ),
                         headerLeft: (
-                            <TouchableOpacity
-                                style={{ padding: 10 }}
-                                onPress={() => {
-                                    navigation.toggleDrawer()
-                                }}>
-                                <Icon size={25} name='cast' color="#701c68" />
-                                {/* <Text>{navigation.state.routeName }</Text> */}
-                            </TouchableOpacity>
+                            <View style={styles.headerButtonWrapper}>
+                                <TouchableOpacity
+                                    onPress={() => {
+                                    }}>
+                                    <Icon size={25} name='cast' color="#701c68" />
+                                </TouchableOpacity>
+                            </View>
                         )
                     }
                 }
-
                 return {
                     headerBackImage: (
-                        <Icon size={25} name='arrow-left' color="#701c68" style={{ padding: 10 }} />
+                        <View style={styles.headerButtonWrapper}>
+                            <Icon size={25} name='arrow-left' color="#701c68" />
+                        </View>
                     )
                 }
 
@@ -127,6 +125,10 @@ const RootNavigator = createDrawerNavigator({
 const styles = StyleSheet.create({
     container: {
         flex: 1
+    },
+    headerButtonWrapper: {
+        paddingLeft: 16,
+        paddingRight: 16,
     },
 })
 
