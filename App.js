@@ -38,7 +38,7 @@ const RootNavigator = createDrawerNavigator({
                         <Icon name="calendar-check" size={25} color={focused ? '#d10074' : 'grey'} />
                     ),
                     tabBarLabel: 'אושרו היום'
-                }
+                },
             },
             Tab2: {
                 screen: HomeScreen,
@@ -85,6 +85,11 @@ const RootNavigator = createDrawerNavigator({
             navigationOptions: ({ navigation }) => {
                 if (navigation.state.routeName == 'Tabs') {
                     return {
+                        // headerTintColor: '#701c68',
+                        // headerTitleStyle: {
+                        //     fontWeight: 'bold',
+                        // },
+                        // title: 'פורום פרודקשיין',
                         headerRight: (
                             <View style={styles.headerButtonWrapper}>
                                 <TouchableOpacity
@@ -111,7 +116,11 @@ const RootNavigator = createDrawerNavigator({
                         <View style={styles.headerButtonWrapper}>
                             <Icon size={25} name='arrow-left' color="#701c68" />
                         </View>
-                    )
+                    ),
+                    headerBackTitleStyle: {
+                        color: '#701c68'
+                    },
+                    headerBackTitle: navigation.state.routeName
                 }
 
             }
